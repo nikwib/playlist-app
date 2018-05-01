@@ -11,7 +11,7 @@ class MainPage extends Component {
 
   render() {
     return (
-      <div className="MainPage row">
+      <div>
         <h1 style={{ textAlign: 'center' }}> Playlist Manager </h1>
         <div style={{ textAlign: 'right', margin: 15 }}> <CreatePlaylist /></div>
         { this.props.playlists && <Playlists playlists={this.props.playlists} />}

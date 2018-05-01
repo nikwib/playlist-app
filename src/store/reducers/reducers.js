@@ -2,11 +2,6 @@ const defaultState = {
   playlists: [],
   playlist: {},
   fetching: false,
-  message: {
-    show: false,
-    title: '',
-    message: '',
-  },
 };
 
 export default (state = defaultState, action) => {
@@ -29,11 +24,6 @@ export default (state = defaultState, action) => {
     case 'ADD_TO_PLAYLIST_FAILURE':
       return {
         ...state,
-        message: {
-          show: true,
-          title: 'Alert',
-          message: 'Something went wrong, please try again.',
-        },
         fetching: false,
       };
 

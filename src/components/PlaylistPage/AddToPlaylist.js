@@ -38,7 +38,6 @@ class AddToPlaylist extends Component {
   };
 
   onSubmit = () => {
-    console.log(this.state);
     this.props.addToPlaylist(this.state.id, this.state.video);
     this.setState({ open: false });
   };

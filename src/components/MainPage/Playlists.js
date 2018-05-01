@@ -41,8 +41,7 @@ const renderPlaylists = (props) => props.playlists.map(playlist => {
         />
         <Divider />
       </Link>
-
-    </div >
+    </div>
   );
 });
 
@@ -54,7 +53,7 @@ const Playlists = (props) => {
         {props.playlists && renderPlaylists(props)}
       </List>
     </div>
-  )
+  );
 };
 
 export default Playlists;

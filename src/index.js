@@ -6,8 +6,8 @@ import App from './App';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import configureStore from './store/configureStore';
-const store = configureStore();
 
+const store = configureStore();
 
 ReactDOM.render(
   <BrowserRouter>

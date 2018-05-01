@@ -41,6 +41,6 @@ export const Video = ({ url, creator, description }) => {
         />
       </List>
     </div>
-  )
+  );
 };
 

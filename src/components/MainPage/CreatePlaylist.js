@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from './../../store/actions/actions';
 
-class CreatePLaylist extends Component {
+class CreatePlaylist extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,7 +39,6 @@ class CreatePLaylist extends Component {
   onSubmit = () => {
     this.props.addPlaylist(this.state.playlist);
     this.setState({ open: false });
-
   };
 
   input = (title, name, type = 'text') => (
@@ -94,4 +93,4 @@ const mapDispatchToProps = (dispatch) => ({
   addPlaylist: (playlist) => { dispatch(actions.addPlaylist(playlist)); },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePLaylist);
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePlaylist);

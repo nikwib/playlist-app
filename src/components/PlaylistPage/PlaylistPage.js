@@ -1,4 +1,3 @@
-
 import Divider from 'material-ui/Divider';
 import { List, ListItem } from 'material-ui/List';
 import SocialPerson from 'material-ui/svg-icons/social/person';
@@ -25,7 +24,6 @@ class PlaylistPage extends Component {
   };
 
   render() {
-
     const time = this.props.playlist && moment(this.props.playlist.createdAt).calendar(null, {
       sameDay: '[Today]',
       nextDay: '[Tomorrow]',
@@ -34,7 +32,6 @@ class PlaylistPage extends Component {
       lastWeek: '[Last] dddd',
       sameElse: 'DD/MM/YYYY'
     });
-
     return (
       <div className="Playlist row" >
         <h1 style={{ textAlign: 'center' }}> {this.props.playlist.playlist} </h1>
@@ -46,7 +43,9 @@ class PlaylistPage extends Component {
             rightAvatar={<div style={{ fontStyle: 'italic' }}> Created {time} </div>}
           />
         </List>
-        <div style={{ textAlign: 'right', margin: 15 }}> <AddToPlaylist id={this.props.match.params.id} /></div>
+        <div style={{ textAlign: 'right', margin: 15 }}>
+          <AddToPlaylist id={this.props.match.params.id} />
+        </div>
         {this.props.playlist && this.renderPlaylistInfo()}
       </div>
     );
