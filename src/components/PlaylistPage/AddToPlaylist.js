@@ -6,16 +6,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from './../../store/actions/actions';
 
-class CreatePLaylist extends Component {
+class AddToPlaylist extends Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false,
       id: props.id,
-      playlist: {
-        playlist: '',
+      video: {
         creator: '',
-      }
+        url: '',
+        description: '',
+      },
     };
   }
 
@@ -29,17 +30,17 @@ class CreatePLaylist extends Component {
 
   handleChange = (e) => {
     this.setState({
-      playlist: {
-        ...this.state.playlist,
+      video: {
+        ...this.state.video,
         [e.target.name]: e.target.value
       }
     });
   };
 
   onSubmit = () => {
-    this.props.addPlaylist(this.state.playlist);
+    console.log(this.state);
+    this.props.addToPlaylist(this.state.id, this.state.video);
     this.setState({ open: false });
-
   };
 
   input = (title, name, type = 'text') => (
@@ -68,19 +69,19 @@ class CreatePLaylist extends Component {
         onClick={this.onSubmit}
       />,
     ];
-
     return (
       <div>
-        <RaisedButton label="Create new playlist" onClick={this.handleOpen} />
+        <RaisedButton label="Add new video" onClick={this.handleOpen} />
         <Dialog
-          title="Create new playlist"
+          title="Add video to playlist"
           actions={actions}
           modal={false}
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          {this.input('Playlist name', 'playlist')}
           {this.input('Creator', 'creator')}
+          {this.input('Url', 'url')}
+          {this.input('Description', 'description')}
         </Dialog>
       </div>
     );
@@ -91,7 +92,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addPlaylist: (playlist) => { dispatch(actions.addPlaylist(playlist)); },
+  addToPlaylist: (id, video) => { dispatch(actions.addToPlaylist(id, video)); },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePLaylist);
+export default connect(mapStateToProps, mapDispatchToProps)(AddToPlaylist);

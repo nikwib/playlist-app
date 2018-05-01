@@ -19,16 +19,17 @@ const addPlaylist = body => ({
 
 const getPlaylistInfo = id => ({
   type: 'GET_PLAYLIST_INFO',
-  id
+  id,
 });
 
-const addToPlaylist = id => ({
+const addToPlaylist = (id, body) => ({
   type: 'ADD_TO_PLAYLIST',
   url: ('/playlist/' + id),
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
   },  
+  body,
 });
 
 

@@ -1,7 +1,12 @@
 
+import Divider from 'material-ui/Divider';
+import { List, ListItem } from 'material-ui/List';
+import SocialPerson from 'material-ui/svg-icons/social/person';
+import moment from 'moment';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import actions from './../../store/actions/actions';
+import AddToPlaylist from './AddToPlaylist';
 import { Video } from './Video';
 
 class PlaylistPage extends Component {
@@ -11,30 +16,48 @@ class PlaylistPage extends Component {
   };
 
   renderPlaylistInfo = () => {
-    return this.props.playlist.videos.map(video => (
-      <Video 
-        key={video._id}
-        {...video} />
+    return this.props.playlist.videos.map((video, i) => (
+      <div key={video._id} style={{ margin: 50 }}>
+        {(i > 0) && <Divider style={{ marginBottom: 50 }} />}
+        <Video {...video} />
+      </div>
     ))
   };
 
   render() {
+
+    const time = this.props.playlist && moment(this.props.playlist.createdAt).calendar(null, {
+      sameDay: '[Today]',
+      nextDay: '[Tomorrow]',
+      nextWeek: 'dddd',
+      lastDay: '[Yesterday]',
+      lastWeek: '[Last] dddd',
+      sameElse: 'DD/MM/YYYY'
+    });
+
     return (
-      <div className="PlaylistPage row" >
-        <h1> Playlist {this.props.playlist.playlist} </h1>
-        {this.renderPlaylistInfo()}
-      </div >
+      <div className="Playlist row" >
+        <h1 style={{ textAlign: 'center' }}> {this.props.playlist.playlist} </h1>
+        <List>
+          <ListItem
+            primaryText={this.props.playlist.creator}
+            leftIcon={<SocialPerson />}
+            disabled={true}
+            rightAvatar={<div style={{ fontStyle: 'italic' }}> Created {time} </div>}
+          />
+        </List>
+        <div style={{ textAlign: 'right', margin: 15 }}> <AddToPlaylist id={this.props.match.params.id} /></div>
+        {this.props.playlist && this.renderPlaylistInfo()}
+      </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  // Map your state to props
-  playlist: state.playlist
+  playlist: state.playlist,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // Map your dispatch actions
   getPlaylistInfo: (id) => dispatch(actions.getPlaylistInfo(id)),
 });
 

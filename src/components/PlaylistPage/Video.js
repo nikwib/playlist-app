@@ -1,14 +1,45 @@
+import { List, ListItem } from 'material-ui/List';
+import ContentLink from 'material-ui/svg-icons/content/link';
+import SocialPerson from 'material-ui/svg-icons/social/person';
 import React from 'react';
-import moment from 'moment';
-import { Link } from 'react-router-dom';
-// const time = moment(moment.duration(car.total_driving_time)).format('HH:mm');
+import YouTube from 'react-youtube';
 
-export const Video = ({url, creator, description}) => {
+const styles = {
+  root: {
+    display: 'flex',
+  },
+  opts: {
+    height: '195',
+    width: '320',
+  }
+};
+
+export const Video = ({ url, creator, description }) => {
   return (
-    <div className="video-item">
-      <div className="creator"> {creator}</div>
-      <div className="url"> {url}</div>
-      <div className="Description"> {description}</div>
+    <div style={styles.root}>
+      <YouTube
+        videoId={url.split('/').pop()}
+        opts={styles.opts}
+      />
+      <List>
+        <ListItem
+          disabled={true}
+          disableKeyboardFocus={true}
+          leftIcon={<SocialPerson />}
+          primaryText={creator}
+        />
+        <ListItem
+          disabled={true}
+          disableKeyboardFocus={true}
+          leftIcon={<ContentLink />}
+          primaryText={url}
+        />
+        <ListItem
+          disabled={true}
+          disableKeyboardFocus={true}
+          primaryText={description}
+        />
+      </List>
     </div>
   )
 };

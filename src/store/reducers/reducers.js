@@ -7,12 +7,13 @@ const defaultState = {
     title: '',
     message: '',
   },
-
 };
+
 export default (state = defaultState, action) => {
   switch (action.type) {
     case 'ADD_PLAYLIST_REQUEST':
     case 'GET_PLAYLISTS_REQUEST':
+    case 'ADD_TO_PLAYLIST_REQUEST':
       return {
         ...state,
         fetching: true,
@@ -25,6 +26,7 @@ export default (state = defaultState, action) => {
       };
 
     case 'ADD_PLAYLIST_FAILURE':
+    case 'ADD_TO_PLAYLIST_FAILURE':
       return {
         ...state,
         message: {
@@ -45,7 +47,18 @@ export default (state = defaultState, action) => {
     case 'ADD_PLAYLIST_SUCCESS':
       return {
         ...state,
-        playlists: state.playlists.concat(action.response), 
+        playlists: state.playlists.concat(action.response),
+        fetching: false,
+      };
+
+    case 'ADD_TO_PLAYLIST_SUCCESS':
+      return {
+        ...state,
+        playlist:
+          {
+            ...state.playlist,
+            videos: state.playlist.videos.concat(action.response),
+          },
         fetching: false,
       };
 
@@ -54,8 +67,6 @@ export default (state = defaultState, action) => {
         ...state,
         playlist: state.playlists.filter(playlist => (playlist._id === action.id))[0],
       };
-
-    
 
     default:
   }
