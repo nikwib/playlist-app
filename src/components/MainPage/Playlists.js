@@ -1,4 +1,3 @@
-import Avatar from 'material-ui/Avatar';
 import Divider from 'material-ui/Divider';
 import { List, ListItem } from 'material-ui/List';
 import NavigateNext from 'material-ui/svg-icons/image/navigate-next';
