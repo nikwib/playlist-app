@@ -46,7 +46,7 @@ class PlaylistPage extends Component {
         <div style={{ textAlign: 'right', margin: 15 }}>
           <AddToPlaylist id={this.props.match.params.id} />
         </div>
-        {this.props.playlist && this.renderPlaylistInfo()}
+        {this.props.playlist.videos &&  this.renderPlaylistInfo()}
       </div>
     );
   }
