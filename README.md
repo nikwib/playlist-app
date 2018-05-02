@@ -2,10 +2,7 @@
 
 > A way to organise youtube video by creating and adding videos to playlist.
 
-Playlist is an app that allowes you to create multiple playlist and add youtube videos to each list. [Live Demo](http://streetfleet.s3-website.eu-west-3.amazonaws.com)
-
-![App screenshot](https://github.com/nikwib/streetfleet-webclient/blob/develop/screenshots/HomePage.jpg)
-
+Playlist is an app that allowes you to create multiple playlist and add youtube videos to each list. [Live Demo](http://playlist-app.s3-website.eu-west-3.amazonaws.com)
 
 
 ## Getting Started
