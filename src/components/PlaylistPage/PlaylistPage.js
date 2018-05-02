@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import actions from './../../store/actions/actions';
 import AddToPlaylist from './AddToPlaylist';
 import { Video } from './Video';
+import isEmpty from 'lodash/isEmpty';
 
 class PlaylistPage extends Component {
 
@@ -15,7 +16,7 @@ class PlaylistPage extends Component {
   };
 
   renderPlaylistInfo = () => {
-    return this.props.playlist.videos.map((video, i) => (
+    return isEmpty(!this.props.playlist.videos) && this.props.playlist.videos.map((video, i) => (
       <div key={video._id} style={{ margin: 50 }}>
         {(i > 0) && <Divider style={{ marginBottom: 50 }} />}
         <Video {...video} />
@@ -46,7 +47,7 @@ class PlaylistPage extends Component {
         <div style={{ textAlign: 'right', margin: 15 }}>
           <AddToPlaylist id={this.props.match.params.id} />
         </div>
-        {this.props.playlist && this.renderPlaylistInfo()}
+        {this.renderPlaylistInfo()}
       </div>
     );
   }
